@@ -71,9 +71,15 @@ def do_add_nugget():
         "n": booknuggets_nugget,
     }
 
+    for nugget in nuggets:
+        if nugget["n"] == booknuggets_nugget:
+            booknuggets_message.error("Nugget already added")
+            return
+
     nuggets.append(new_nugget)
     with open(f"/Users/arpitbhayani/myw/articles/books/{booknuggets_book_id}.json", "w") as fp:
         fp.write(json.dumps(nuggets, indent=4))
+
     booknuggets_expander.json(json.dumps(new_nugget))
     booknuggets_message.success(f"Nugget added. Total Nuggets {len(nuggets)}")
 
